@@ -22,3 +22,9 @@ Route::get('/bienvenue', function () {
         'cours' => 'Atelier Framework Côté Serveur',
     ]);
 });
+Route::get('/a-propos', function () {
+    return view('a-propos', [
+        'auteur' => 'Moneam Wannessi',
+        'groupe' => 'MDW32',
+    ]);
+});
