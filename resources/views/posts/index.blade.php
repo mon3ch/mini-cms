@@ -2,6 +2,7 @@
     <x-slot:title>{{ $heading }} - Mini-CMS</x-slot:title>
 
     <x-page-header :title="$heading" />
+    <a href="{{ route('posts.create') }}" class="inline-block mb-6 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700">Nouvel article</a>
 
     <div class="grid gap-6 md:grid-cols-2">
         @forelse ($posts as $post)
@@ -11,5 +12,8 @@
                 Il n'y a pas encore d'article publié.
             </x-alert>
         @endforelse
+    </div>
+    <div class="mt-8">
+        {{ $posts->links() }}
     </div>
 </x-layout>
