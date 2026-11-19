@@ -28,3 +28,14 @@ Route::get('/a-propos', function () {
         'groupe' => 'MDW32',
     ]);
 });
+
+Route::get('/version', function () {
+    return 'Laravel ' . app()->version() . ' - PHP ' . PHP_VERSION;
+});
+
+Route::get('/heure', function () {
+    return view('heure', [
+        'heure' => now()->format('H:i'),
+        'date' => now()->format('d/m/Y'),
+    ]);
+});
