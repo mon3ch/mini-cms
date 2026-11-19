@@ -1,17 +1,17 @@
 # Mini-CMS
 
-Projet fil rouge de l'Atelier Framework Côté Serveur (Laravel 13, PHP 8.3+), 3e année MDW, ISET Sidi Bouzid.
+Projet fil rouge de l'Atelier Framework Côté Serveur (Laravel 12, PHP 8.2+), 3e année MDW, ISET Sidi Bouzid.
 
 Auteur : Moneam Wannessi, groupe MDW32.
 
 Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication : pages publiques, back-office authentifié, API JSON et tests Pest. Chaque session se termine par un tag Git (`lab-01`, `lab-01b`, puis un tag par session).
 
-## État actuel (tag lab-03)
+## État actuel (tag lab-03b)
 
-- Articles enregistrés dans une base SQLite et lus avec le modèle Eloquent `Post`.
-- La table `posts` est créée par une migration ; après un clone, `php artisan migrate` la recrée vide.
-- Liste paginée, détail par liaison modèle-route et formulaire de création avec validation côté serveur.
-- Tests Pest : `php artisan test`.
+- CRUD complet des articles : liste, détail, création, modification et suppression avec confirmation.
+- Colonne `excerpt` ajoutée par une nouvelle migration ; les anciens articles continuent de fonctionner.
+- Scope `published` utilisé sur l'accueil et les archives.
+- Tests Pest de lecture et d'écriture : `php artisan test`.
 
 ## Routes disponibles
 
@@ -25,6 +25,10 @@ Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication 
 | GET | `/posts/create` | `posts.create` | `PostController@create` |
 | POST | `/posts` | `posts.store` | `PostController@store` |
 | GET | `/posts/{post}` | `posts.show` | `PostController@show` |
+| GET | `/posts/{post}/edit` | `posts.edit` | `PostController@edit` |
+| PUT/PATCH | `/posts/{post}` | `posts.update` | `PostController@update` |
+| DELETE | `/posts/{post}` | `posts.destroy` | `PostController@destroy` |
+| PATCH | `/posts/{post}/publication` | `posts.publication` | `PostController@togglePublication` |
 
 ## Prérequis
 
@@ -99,3 +103,9 @@ Ouvrir ensuite http://localhost:8000 (adresse de l'application, différente de l
 ![Liste paginée des articles](screenshots/s05-articles.png)
 
 ![Formulaire avec erreurs de validation](screenshots/s05-formulaire.png)
+
+### Session 06
+
+![Formulaire de modification prérempli](screenshots/s06-modification.png)
+
+![Confirmation de suppression](screenshots/s06-suppression.png)
