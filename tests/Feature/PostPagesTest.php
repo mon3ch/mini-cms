@@ -71,3 +71,32 @@ it('shows only published posts on the home page', function () {
         ->assertSee('Article visible')
         ->assertDontSee('Article masque');
 });
+
+it('shows excerpts on cards and falls back to the body', function () {
+    $fallbackBody = str_repeat('Contenu sans extrait. ', 10);
+
+    $withExcerpt = Post::create([
+        'title' => 'Article avec extrait',
+        'slug' => 'article-avec-extrait',
+        'excerpt' => 'Extrait personnalisé.',
+        'body' => 'Contenu complet de cet article.',
+        'is_published' => true,
+        'published_at' => now(),
+    ]);
+
+    Post::create([
+        'title' => 'Article sans extrait',
+        'slug' => 'article-sans-extrait',
+        'body' => $fallbackBody,
+        'is_published' => false,
+    ]);
+
+    $this->get(route('posts.show', $withExcerpt))
+        ->assertOk()
+        ->assertSee('Extrait personnalisé.');
+
+    $this->get(route('posts.index'))
+        ->assertOk()
+        ->assertSee('Extrait personnalisé.')
+        ->assertSee(substr($fallbackBody, 0, 120), false);
+});
