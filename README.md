@@ -6,12 +6,16 @@ Auteur : Moneam Wannessi, groupe MDW32.
 
 Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication : pages publiques, back-office authentifié, API JSON et tests Pest. Chaque session se termine par un tag Git (`lab-01`, `lab-01b`, puis un tag par session).
 
-## État actuel (tag lab-03b)
+## État actuel (tag lab-04)
 
-- CRUD complet des articles : liste, détail, création, modification et suppression avec confirmation.
-- Colonne `excerpt` ajoutée par une nouvelle migration ; les anciens articles continuent de fonctionner.
-- Scope `published` utilisé sur l'accueil et les archives.
-- Tests Pest de lecture et d'écriture : `php artisan test`.
+- Modèles `Category` et `Tag` reliés à `Post` : un article a une catégorie et un auteur (1:N), et plusieurs tags (N:N via `post_tag`).
+- Fabriques `PostFactory` (état `published()`), `CategoryFactory`, `TagFactory` et seeders pour des données reproductibles.
+- Chargement anticipé avec `with()` ; `Model::preventLazyLoading()` signale les problèmes N+1 hors production.
+- Tests Pest : `PostPagesTest`, `PostWriteTest` et `PostRelationsTest`.
+
+## Données de démonstration
+
+Après un clone, reconstruire la base avec `php artisan migrate:fresh --seed`. Cette commande vide la base avant de la remplir.
 
 ## Routes disponibles
 
@@ -32,7 +36,7 @@ Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication 
 
 ## Prérequis
 
-- PHP et Composer (PHP 8.3 ou plus depuis https://www.php.net/downloads, avec les extensions curl, fileinfo, mbstring, openssl, pdo_sqlite, sqlite3 et zip activées dans php.ini, et Composer depuis https://getcomposer.org).
+- PHP et Composer (PHP 8.2 ou plus depuis https://www.php.net/downloads, avec les extensions curl, fileinfo, mbstring, openssl, pdo_sqlite, sqlite3 et zip activées dans php.ini, et Composer depuis https://getcomposer.org).
 - Node.js LTS et npm.
 - Git.
 
@@ -109,3 +113,9 @@ Ouvrir ensuite http://localhost:8000 (adresse de l'application, différente de l
 ![Formulaire de modification prérempli](screenshots/s06-modification.png)
 
 ![Confirmation de suppression](screenshots/s06-suppression.png)
+
+### Session 07
+
+![Liste des articles avec leur catégorie, leur auteur et leurs tags](screenshots/s07-liste-relations.png)
+
+![Page d'un article avec ses tags et les articles de la même catégorie](screenshots/s07-detail-tags.png)
