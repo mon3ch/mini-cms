@@ -6,12 +6,14 @@ Auteur : Moneam Wannessi, groupe MDW32.
 
 Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication : pages publiques, back-office authentifié, API JSON et tests Pest. Chaque session se termine par un tag Git (`lab-01`, `lab-01b`, puis un tag par session).
 
-## État actuel (tag lab-04)
+## État actuel (tag lab-04b)
 
 - Modèles `Category` et `Tag` reliés à `Post` : un article a une catégorie et un auteur (1:N), et plusieurs tags (N:N via `post_tag`).
 - Fabriques `PostFactory` (état `published()`), `CategoryFactory`, `TagFactory` et seeders pour des données reproductibles.
 - Chargement anticipé avec `with()` ; `Model::preventLazyLoading()` signale les problèmes N+1 hors production.
-- Tests Pest : `PostPagesTest`, `PostWriteTest` et `PostRelationsTest`.
+- Les formulaires permettent d'associer une catégorie et des tags aux articles.
+- Pages publiques par catégorie et par tag (routes basées sur les slugs), compteurs de catégories et tags populaires sur l'accueil.
+- Tests Pest : `PostPagesTest`, `PostWriteTest`, `PostRelationsTest` et `PostTaxonomyTest`.
 
 ## Données de démonstration
 
@@ -33,6 +35,8 @@ Après un clone, reconstruire la base avec `php artisan migrate:fresh --seed`. C
 | PUT/PATCH | `/posts/{post}` | `posts.update` | `PostController@update` |
 | DELETE | `/posts/{post}` | `posts.destroy` | `PostController@destroy` |
 | PATCH | `/posts/{post}/publication` | `posts.publication` | `PostController@togglePublication` |
+| GET | `/posts/categorie/{category:slug}` | `posts.category` | `PostController@byCategory` |
+| GET | `/posts/tag/{tag:slug}` | `posts.tag` | `PostController@byTag` |
 
 ## Prérequis
 
@@ -119,3 +123,9 @@ Ouvrir ensuite http://localhost:8000 (adresse de l'application, différente de l
 ![Liste des articles avec leur catégorie, leur auteur et leurs tags](screenshots/s07-liste-relations.png)
 
 ![Page d'un article avec ses tags et les articles de la même catégorie](screenshots/s07-detail-tags.png)
+
+### Session 08
+
+![Formulaire avec les champs de catégorie et de tags](screenshots/s08-formulaire-relations.png)
+
+![Page des articles d'une catégorie](screenshots/s08-page-categorie.png)
