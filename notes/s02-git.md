@@ -25,3 +25,11 @@ Réponse :`vendor/` contient les dépendances PHP, soit des milliers de fichiers
 ## 5. Git Credential Manager
 
 Réponse :Git Credential Manager range le jeton GitHub dans le Gestionnaire d'identification Windows (entrée `git:https://github.com`). Sur un poste de l'université, il faut le supprimer en fin de séance (et se déconnecter de github.com dans le navigateur), parce que toute personne qui utilise la même session Windows pourrait pousser en mon nom. Sur mon ordinateur personnel, je le garde.
+
+## 6. Historique depuis lab-01
+
+Nombre de commits depuis lab-01 :
+
+Fichiers modifiés depuis lab-01 :
+
+Ce que git tag -n affiche pour lab-01 :
