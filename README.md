@@ -2,7 +2,7 @@
 
 Projet fil rouge de l'Atelier Framework Côté Serveur (Laravel 13, PHP 8.3+), 3e année MDW, ISET Sidi Bouzid.
 
-Auteur : moneam wannessi, groupe MDW32.
+Auteur : Moneam Wannessi, groupe MDW32.
 
 Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication : pages publiques, back-office authentifié, API JSON et tests Pest. Chaque session se termine par un tag Git (`lab-01`, `lab-01b`, puis un tag par session).
 
@@ -11,6 +11,18 @@ Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication 
 - Routes en closures : `/`, `/bonjour`, `/bonjour-court`, `/bienvenue`, `/version`, `/heure` et `/a-propos`.
 - Vues Blade : `bienvenue`, `heure` et `a-propos`.
 - Base de données SQLite locale (`database/database.sqlite`, non versionnée).
+
+## Routes disponibles
+
+| Méthode | URI | Réponse |
+|---|---|---|
+| GET | `/` | Vue `welcome` (page d'accueil par défaut de Laravel) |
+| GET | `/bonjour` | Chaîne de texte « Bonjour MDW3 ! Voici ma première route Laravel 13. » |
+| GET | `/bonjour-court` | Chaîne de texte écrite avec une fonction fléchée |
+| GET | `/bienvenue` | Vue `bienvenue` avec le nom de l'étudiant, le groupe et le cours |
+| GET | `/version` | Chaîne avec la version de Laravel et celle de PHP |
+| GET | `/heure` | Vue `heure` avec l'heure et la date |
+| GET | `/a-propos` | Vue `a-propos` avec le nom de l'auteur et le groupe |
 
 ## Prérequis
 
@@ -23,8 +35,7 @@ Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication 
 ### Bash (Git Bash, macOS, Linux)
 
 ```bash
-git clone https://github.com/mon3ch
-moneam wannessi/mini-cms.git
+git clone https://github.com/mon3ch/mini-cms.git
 cd mini-cms
 composer install
 npm install
@@ -38,8 +49,7 @@ composer run dev
 ### PowerShell (Windows)
 
 ```powershell
-git clone https://github.com/VOTRE-mon3ch
-moneam wannessi/mini-cms.git
+git clone https://github.com/mon3ch/mini-cms.git
 cd mini-cms
 composer install
 npm install
