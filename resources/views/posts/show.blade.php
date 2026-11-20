@@ -26,6 +26,7 @@
         @endif
         <div class="text-gray-800 leading-relaxed whitespace-pre-line">{{ $post->body }}</div>
 
+        @can('update', $post)
         <div class="mt-8 flex flex-wrap items-start gap-4">
             <form method="POST" action="{{ route('posts.publication', $post) }}">
                 @csrf
@@ -36,6 +37,7 @@
 
             <a href="{{ route('posts.edit', $post) }}" class="rounded-md border border-indigo-600 px-4 py-2 text-sm font-medium text-indigo-600 hover:bg-indigo-50">Modifier</a>
 
+            @can('delete', $post)
             <details>
                 <summary class="cursor-pointer rounded-md border border-red-600 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-50">Supprimer</summary>
 
@@ -47,7 +49,9 @@
                     <button type="submit" class="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700">Confirmer la suppression</button>
                 </form>
             </details>
+            @endcan
         </div>
+        @endcan
     </article>
 
     @if ($related->isNotEmpty())
